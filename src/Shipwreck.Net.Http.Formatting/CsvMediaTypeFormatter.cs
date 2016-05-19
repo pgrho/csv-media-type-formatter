@@ -39,6 +39,10 @@ namespace Shipwreck.Net.Http.Formatting
             }
         }
 
+        // TODO: Separator Char
+        // TODO: Quotation
+        // TODO: NewLine
+
         public override bool CanReadType(Type type) => false;
 
         public override bool CanWriteType(Type type) => type != null;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Formatting;
@@ -38,6 +39,8 @@ namespace Shipwreck.Net.Http.Formatting
         internal virtual Task WriteValues(TextWriter writer, object value)
             => WriteStringAsync(writer, value?.ToString());
 
+        // TODO: Build dynamic method
+
         public virtual async Task WriteToAsync(TextWriter writer, object value)
         {
             if (HasHeader)
@@ -48,7 +51,7 @@ namespace Shipwreck.Net.Http.Formatting
             await WriteValues(writer, value);
         }
 
-        protected async Task WriteStringAsync(TextWriter writer, string value, bool forceQuote = false)
+        protected static async Task WriteStringAsync(TextWriter writer, string value, bool forceQuote = false)
         {
             if (string.IsNullOrEmpty(value))
             {
